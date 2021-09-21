@@ -54,36 +54,25 @@ bs_data = get_bs_data(csv_file)
 lModelList = FBModelList()
 FBGetSelectedModels(lModelList)
 root = lModelList[0]
-print(root.Name)
+#print(root.Name)
 
-arkit_bs_name = "JawOpen"
-mh_bs_name = "CTRL_expressions_jawOpen"
 tc = FBTimeCode(FBTimeCode.FRAMES_30)
 
 for bs in bs_data:
-    if bs.name == arkit_bs_name:
+    
+    arkit_bs_name = bs.name
+    mh_bs_name =  "CTRL_expressions_" + bs.name[0].lower() + bs.name[1:]
+        
+    mh_bs = root.PropertyList.Find(mh_bs_name)
+    
+    if mh_bs:
         print(arkit_bs_name)
-        print(mh_bs_name)
-        
-        mh_bs = root.PropertyList.Find(mh_bs_name) 
         mh_bs.SetAnimated(True)
-        
+    
         for frame, value in bs.keys_dic.items():
-            tc.SetTimeCode(frame)
+            tc.SetTimeCode(*frame)
             time = tc.GetTime()
             mh_bs.Data = value
             mh_bs.KeyAt(time)
 
 print("done")
-'''
-time = FBTimeCode()
-time.SetTimeCode(0,0,0,4)
-lBS.KeyAt(time)
-print("done")
-''' 
-
-'''
-for bs in bs_data:
-    bs_name = 'CTRL_expressions_' + bs.name[0].lower() + bs.name[1:]
-    lBS = root.PropertyList.Find(bs_name)
-'''  
