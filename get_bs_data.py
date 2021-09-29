@@ -9,6 +9,7 @@ from pyfbsdk_additions import *
 import os
 import re
 import pandas as pd
+import time
 
 # debug functions
 def prinlist(lst):
@@ -39,6 +40,11 @@ class BlendShape:
         to_print += 50*'-'+'\n'  # separator
 
         return to_print
+
+    def is_bs_target(self, target):
+        ''' check if a target is triggered by this blendshape '''
+
+        return target in self.target_map.keys()
 
         
 def format_timecode(tc):
@@ -76,7 +82,7 @@ def create_blendshapes(ue_map_file):
 
         bs_data.append(BlendShape(name, target_map))
 
-    return bs_data
+    return bs_data, mh_bs
 
 
 def get_anim_data(llf_file, bs_data):
@@ -97,28 +103,31 @@ def get_anim_data(llf_file, bs_data):
         f = float(f)
         timecode.append((h, m, s, f))
 
-    tc_in, tc_out = timecode[0], timecode[-1]
-
     # create list of blendshapes
     for col_name, col_values in data.transpose().iterrows():
 
         for bs in bs_data:
             if bs.name == col_name:
                 bs.keys_dic = dict(zip(timecode, col_values.tolist()))
+
+    # delete bs without keys (not part of the csv file)
+    bs_data = [bs for bs in bs_data if bs.keys_dic]
             
-    return bs_data, tc_in, tc_out
+    return bs_data, timecode
 
 
 ### MAIN ###
+start = time.time()
 pj_folder = r"M:\Artist_Personal\Alexandre\Scripts\Git\LiveLinkFace-CSV-to-MotionBuilder"
 
 # create blendshapes
 ue_map_file = os.path.join(pj_folder, 't3d', 'mh_arkit_mapping_pose.T3D')
-bs_data = create_blendshapes(ue_map_file)
+bs_data, mh_bs = create_blendshapes(ue_map_file)
 
 # retrieve BS information from csv file
 llf_file = os.path.join(pj_folder, 'csv', 'rom.csv')
-bs_data, tc_in, tc_out = get_anim_data(llf_file, bs_data)
+bs_data, tc_range = get_anim_data(llf_file, bs_data)
+tc_in, tc_out = tc_range[0], tc_range[-1]
 
 # select root joint to access properties
 lModelList = FBModelList()
@@ -130,28 +139,32 @@ root = lModelList[0]
 # create TimeCode object
 tc = FBTimeCode(FBTimeCode.FRAMES_5994)
 
-# browse through blendshapes
-for bs in bs_data:
-    print(bs)
-
-    if not bs.keys_dic:
-        print("{} has no keys > Skipped".format(bs.name))
-        continue
-        
-    for target in bs.target_map.keys():
-        # get target blendshape and its weight
-        mh_bs = root.PropertyList.Find(target)
-        mh_bs_weight = bs.target_map[target]
-    
-        if mh_bs:
-            # set property as animated
-            mh_bs.SetAnimated(True)
-            # add keys influenced by taret bs weight
-            for frame, value in bs.keys_dic.items():
-                tc.SetTimeCode(*frame)
-                time = tc.GetTime() 
-                mh_bs.Data = value * mh_bs_weight
-                mh_bs.KeyAt(time)
+# browse through target shapes
+for target in mh_bs:
+    # find target property   
+    mh_target = root.PropertyList.Find(target)
+    # if found
+    if mh_target:
+        # set property as animated
+        mh_target.SetAnimated(True)
+        target_value = 0.0
+        # browse through timecode
+        for tc_frame in tc_range:        
+            # find bs influencing this target
+            for bs in bs_data:
+                if bs.is_bs_target(target):
+                    # add bs value depending on the influence
+                    print(bs.name)
+                    print(target)
+                    print(tc_frame)
+                    print(bs.keys_dic[tc_frame])
+                    print(bs.target_map[target])
+                    target_value += bs.keys_dic[tc_frame] * bs.target_map[target]
+            # set target value at this timecode
+            tc.SetTimeCode(*tc_frame)
+            time = tc.GetTime() 
+            mh_target.Data = target_value
+            mh_target.KeyAt(time)
                     
 # set timeframe
 tc.SetTimeCode(*tc_in)
@@ -160,4 +173,6 @@ tc.SetTimeCode(*tc_out)
 time_out = tc.GetTime()
 FBSystem().CurrentTake.LocalTimeSpan = FBTimeSpan(time_in, time_out)
 
-print("done")
+end = time.time()
+duration = end - start
+print("Mocap data copied in {} seconds / {} minutes".format(duration, duration/60))
