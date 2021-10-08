@@ -5,8 +5,6 @@
 
 
 # LIBRARIES #########################################################################################################################################
-from pyfbsdk import *
-from pyfbsdk_additions import *
 import os
 import re
 import pandas as pd # to be installed, see first link in Sources at the end
@@ -166,130 +164,135 @@ def get_starting_tc(tc_file):
         start_tc[filename] = timecode
 
     return start_tc
+    
 
+def batch_retarget_animations(rig_file, map_file, anim_source, export_dir=None, sync_file=None):
+    """ main function called by the UI """
 
-# MAIN ##############################################################################################################################################
+    # script required full paths. If anim_source points to a csv file, only this one will be processed. If it points to a folder, all CSV files found inside will be.
+    # rig_file = r"M:\Artist_Personal\Alexandre\Scripts\Git\LiveLinkFace-CSV-to-MotionBuilder\rig\Unrealmetahuman_TPose.fbx"
+    # map_file = r"M:\Artist_Personal\Alexandre\Scripts\Git\LiveLinkFace-CSV-to-MotionBuilder\map\mh_arkit_mapping_pose.T3D"
+    # anim_source = r"M:\Artist_Personal\Alexandre\Scripts\Git\LiveLinkFace-CSV-to-MotionBuilder\anim"
+    # export_dir = r"M:\Artist_Personal\Alexandre\Scripts\Git\LiveLinkFace-CSV-to-MotionBuilder\export"
+    # sync_file = r"M:\Artist_Personal\Alexandre\Scripts\Git\LiveLinkFace-CSV-to-MotionBuilder\timecode\tc.csv"
 
-# script required full paths. If anim_source points to a csv file, only this one will be processed. If it points to a folder, all CSV files found inside will be.
-rig_file = r"M:\Artist_Personal\Alexandre\Scripts\Git\LiveLinkFace-CSV-to-MotionBuilder\rig\Unrealmetahuman_TPose.fbx"
-map_file = r"M:\Artist_Personal\Alexandre\Scripts\Git\LiveLinkFace-CSV-to-MotionBuilder\map\mh_arkit_mapping_pose.T3D"
-anim_source = r"M:\Artist_Personal\Alexandre\Scripts\Git\LiveLinkFace-CSV-to-MotionBuilder\anim"
-export_dir = r"M:\Artist_Personal\Alexandre\Scripts\Git\LiveLinkFace-CSV-to-MotionBuilder\export"
-tc_file = r"M:\Artist_Personal\Alexandre\Scripts\Git\LiveLinkFace-CSV-to-MotionBuilder\timecode\tc.csv"
+    # paths verification
+    if not os.path.isfile(rig_file) or not rig_file.lower().endswith('.fbx'):
+        raise ValueError("rig_file is not a valid path or does not point to an FBX file")
+    if not os.path.isfile(map_file) or not map_file.lower().endswith('.t3d'):
+        raise ValueError("map_file is not a valid path or does not point to a T3D file")
 
-# paths verification
-if not os.path.isfile(rig_file) or not rig_file.lower().endswith('.fbx'):
-    raise ValueError("rig_file is not a valid path or does not point to an FBX file")
-if not os.path.isfile(map_file) or not map_file.lower().endswith('.t3d'):
-    raise ValueError("map_file is not a valid path or does not point to a T3D file")
+    # list animations to process (batch mode)
+    anims_to_process = list()
 
-# list animations to process (batch mode)
-anims_to_process = list()
-
-if os.path.isfile(anim_source) and anim_source.lower().endswith('.csv'):
-    anims_to_process.append(anim_source)
-elif os.path.isdir(anim_source):
-    anims_to_process = [os.path.join(anim_source, f) for f in os.listdir(anim_source) if f.lower().endswith('.csv')]
-    if not anims_to_process:
-        raise ValueError("No CSV files found in anim_source folder")
-else:
-    raise ValueError("anim_source is not a valid path to a CSV file or a folder containing CSV files")
-
-# create list of BlendShapes objects and list of MetaHuman target names (done once, outside of the batch)
-bs_data, mh_bs = create_blendshapes(map_file)
-
-# get starting timecodes
-start_tic = dict()
-if os.path.isfile(tc_file) and tc_file.lower().endswith('.csv'):
-    start_tc = get_starting_tc(tc_file)
-
-# mobu file load options
-lRigImportOptions = FBFbxOptions(False)
-lRigImportOptions.TakeSpan = FBTakeSpanOnLoad().kFBLeaveAsIs
-lRigImportOptions.ShowOptionsDialog = False
-
-# create counters for end summary
-counter_success = 0
-counter_fail = 0
-
-# batch process csv files
-for anim_file in anims_to_process:
-
-    try:
-        # get animation name without path or extension
-        anim_name = os.path.split(anim_file)[-1][:-4]
-        log("Retargeting {} >> START".format(anim_name))
-
-        # get starting timecode if available for this animation
-        anim_start_tc = start_tc[anim_name] if anim_name in start_tc.keys() else ''
-
-        # open rig file
-        FBApplication().FileOpen(rig_file, False, lRigImportOptions)
-
-        # retrieve BlendShape information and timecode list from the CSV animation file
-        bs_data, tc_range = get_anim_data(anim_file, bs_data, anim_start_tc)
-
-        # store timecode in and out
-        tc_in, tc_out = tc_range[0], tc_range[-1]
-
-        # select root joint to access its properties
-        root = FBFindModelByLabelName('root')
-
-        # create TimeCode object at given framerate (LLF uses 59.94 fps)
-        tc = FBTimeCode(FBTimeCode.FRAMES_5994)
-
-        # browse through target shapes
-        for target in mh_bs:
-            # look for target property on root joint
-            mh_target = root.PropertyList.Find(target)
-            # if target found (i.e. name valid)
-            if mh_target:
-                # set property as animated
-                mh_target.SetAnimated(True)
-                # browse through timecode
-                for tc_frame in tc_range:
-                    # create a value that will be keyed onto that property target at given timecode  
-                    target_value = 0.0     
-                    # find BlendShape influencing this target
-                    for bs in bs_data:
-                        if bs.is_bs_target(target):
-                            # define the property value based on the recorded Blendshape value weighted by the mapping value. 
-                            # If smaller than an existing value triggered by another blendshape, we take the max from both.
-                            target_value = max(target_value, bs.keys_dic[tc_frame] * bs.target_map[target])
-                    # set target value at this timecode
-                    tc.SetTimeCode(*tc_frame)
-                    lTime = tc.GetTime()
-                    # round up to 0 the very small influences
-                    if target_value < 0.01:
-                        target_value = 0.0
-                    # key value at given timecode frame
-                    mh_target.Data = target_value
-                    mh_target.KeyAt(lTime)
-                    
-        # set the animation timespan
-        tc.SetTimeCode(*tc_in)
-        time_in = tc.GetTime()
-        tc.SetTimeCode(*tc_out)
-        time_out = tc.GetTime()
-        FBSystem().CurrentTake.LocalTimeSpan = FBTimeSpan(time_in, time_out)
-
-        # save animation
-        if not os.path.exists(export_dir):
-            os.makedirs(export_dir)
-        export_path = os.path.join(export_dir, anim_name + '.fbx')
-        FBApplication().FileSave(export_path)
-
-    except Exception as e:
-        log("Retargeting {} >> ERROR {}".format(anim_name, e))
-        counter_fail += 1
+    if os.path.isfile(anim_source) and anim_source.lower().endswith('.csv'):
+        anims_to_process.append(anim_source)
+    elif os.path.isdir(anim_source):
+        anims_to_process = [os.path.join(anim_source, f) for f in os.listdir(anim_source) if f.lower().endswith('.csv')]
+        if not anims_to_process:
+            raise ValueError("No CSV files found in anim_source folder")
     else:
-        log("Retargeting {} >> DONE".format(anim_name))
-        counter_success += 1
-    finally:
-        print(60 * "-")
+        raise ValueError("anim_source is not a valid path to a CSV file or a folder containing CSV files")
 
-# Summary and counters
-log("Batch script done\nFiles Processed: {} / Success: {} / Failed: {}".format(counter_success + counter_fail, counter_success, counter_fail))
+    # create list of BlendShapes objects and list of MetaHuman target names (done once, outside of the batch)
+    bs_data, mh_bs = create_blendshapes(map_file)
+
+    # get starting timecodes
+    start_tic = dict()
+    if os.path.isfile(sync_file) and sync_file.lower().endswith('.csv'):
+        start_tc = get_starting_tc(sync_file)
+
+    # mobu file load options
+    lRigImportOptions = FBFbxOptions(False)
+    lRigImportOptions.TakeSpan = FBTakeSpanOnLoad().kFBLeaveAsIs
+    lRigImportOptions.ShowOptionsDialog = False
+
+    # ensure export dir is valid
+    if not export_dir:
+        export_dir = os.path.join(anim_source, "Export")
+    elif export_dir and not os.path.exists(export_dir):
+        os.makedirs(export_dir)
+        
+    # create counters for end summary
+    counter_success = 0
+    counter_fail = 0
+
+    # batch process csv files
+    for anim_file in anims_to_process:
+
+        try:
+            # get animation name without path or extension
+            anim_name = os.path.split(anim_file)[-1][:-4]
+            log("Retargeting {} >> START".format(anim_name))
+
+            # get starting timecode if available for this animation
+            anim_start_tc = start_tc[anim_name] if anim_name in start_tc.keys() else ''
+
+            # open rig file
+            FBApplication().FileOpen(rig_file, False, lRigImportOptions)
+
+            # retrieve BlendShape information and timecode list from the CSV animation file
+            bs_data, tc_range = get_anim_data(anim_file, bs_data, anim_start_tc)
+
+            # store timecode in and out
+            tc_in, tc_out = tc_range[0], tc_range[-1]
+
+            # select root joint to access its properties
+            root = FBFindModelByLabelName('root')
+
+            # create TimeCode object at given framerate (LLF uses 59.94 fps)
+            tc = FBTimeCode(FBTimeCode.FRAMES_5994)
+
+            # browse through target shapes
+            for target in mh_bs:
+                # look for target property on root joint
+                mh_target = root.PropertyList.Find(target)
+                # if target found (i.e. name valid)
+                if mh_target:
+                    # set property as animated
+                    mh_target.SetAnimated(True)
+                    # browse through timecode
+                    for tc_frame in tc_range:
+                        # create a value that will be keyed onto that property target at given timecode  
+                        target_value = 0.0     
+                        # find BlendShape influencing this target
+                        for bs in bs_data:
+                            if bs.is_bs_target(target):
+                                # define the property value based on the recorded Blendshape value weighted by the mapping value. 
+                                # If smaller than an existing value triggered by another blendshape, we take the max from both.
+                                target_value = max(target_value, bs.keys_dic[tc_frame] * bs.target_map[target])
+                        # set target value at this timecode
+                        tc.SetTimeCode(*tc_frame)
+                        lTime = tc.GetTime()
+                        # round up to 0 the very small influences
+                        if target_value < 0.01:
+                            target_value = 0.0
+                        # key value at given timecode frame
+                        mh_target.Data = target_value
+                        mh_target.KeyAt(lTime)
+                        
+            # set the animation timespan
+            tc.SetTimeCode(*tc_in)
+            time_in = tc.GetTime()
+            tc.SetTimeCode(*tc_out)
+            time_out = tc.GetTime()
+            FBSystem().CurrentTake.LocalTimeSpan = FBTimeSpan(time_in, time_out)
+
+            # save animation
+            export_path = os.path.join(export_dir, anim_name + '.fbx')
+            FBApplication().FileSave(export_path)
+
+        except Exception as e:
+            log("Retargeting {} >> ERROR {}".format(anim_name, e))
+            counter_fail += 1
+        else:
+            log("Retargeting {} >> DONE".format(anim_name))
+            counter_success += 1
+        finally:
+            print(60 * "-")
+
+    # Summary and counters
+    log("Batch script done\nFiles Processed: {} / Success: {} / Failed: {}".format(counter_success + counter_fail, counter_success, counter_fail))
 
 
 # SOURCES ###########################################################################################################################################
