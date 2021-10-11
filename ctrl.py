@@ -3,10 +3,11 @@
 #### Description: Retarget facial animation files exported from Apple's LiveLinkFace app as CSV files to a MetaHuman skeleton in MotionBuilder
 ##### Requirements: A MetaHuman skeleton (ideally the facial one exported from Unreal), a CSV file from LLF app and a T3D mapping file from Unreal
 
+from pyfbsdk import *
+from pyfbsdk_additions import *
+import os
 
 # LIBRARIES #########################################################################################################################################
-import os
-import re
 import pandas as pd # to be installed, see first link in Sources at the end
 from datetime import datetime
 
@@ -76,6 +77,8 @@ def create_blendshapes(ue_map_file):
     # read and store full file contents
     with open(ue_map_file, 'r') as f:
         ue_contents = f.read()
+
+    import re
 
     # retrieve ARKit poses in an array of 53 BlendShapes objects
     pattern = r'DisplayName="([\w_]+)"'
