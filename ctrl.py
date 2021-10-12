@@ -1,14 +1,9 @@
-## LiveLinkFace To MetaHuman Retargeting in MotionBuidler ###########################################################################################
-### Author: Alexandre Donciu-Julin, a.djulin@mimicproductions.com
-#### Description: Retarget facial animation files exported from Apple's LiveLinkFace app as CSV files to a MetaHuman skeleton in MotionBuilder
-##### Requirements: A MetaHuman skeleton (ideally the facial one exported from Unreal), a CSV file from LLF app and a T3D mapping file from Unreal
-
 from pyfbsdk import *
 from pyfbsdk_additions import *
 import os
 
 # LIBRARIES #########################################################################################################################################
-import pandas as pd # to be installed, see first link in Sources at the end
+import pandas as pd # to be installed, see documentation
 from datetime import datetime
 
 # CLASSES ###########################################################################################################################################
@@ -172,13 +167,6 @@ def get_starting_tc(tc_file):
 def batch_retarget_animations(rig_file, map_file, anim_source, export_dir=None, sync_file=None):
     """ main function called by the UI """
 
-    # script required full paths. If anim_source points to a csv file, only this one will be processed. If it points to a folder, all CSV files found inside will be.
-    # rig_file = r"M:\Artist_Personal\Alexandre\Scripts\Git\LiveLinkFace-CSV-to-MotionBuilder\rig\Unrealmetahuman_TPose.fbx"
-    # map_file = r"M:\Artist_Personal\Alexandre\Scripts\Git\LiveLinkFace-CSV-to-MotionBuilder\map\mh_arkit_mapping_pose.T3D"
-    # anim_source = r"M:\Artist_Personal\Alexandre\Scripts\Git\LiveLinkFace-CSV-to-MotionBuilder\anim"
-    # export_dir = r"M:\Artist_Personal\Alexandre\Scripts\Git\LiveLinkFace-CSV-to-MotionBuilder\export"
-    # sync_file = r"M:\Artist_Personal\Alexandre\Scripts\Git\LiveLinkFace-CSV-to-MotionBuilder\timecode\tc.csv"
-
     # paths verification
     if not os.path.isfile(rig_file) or not rig_file.lower().endswith('.fbx'):
         raise ValueError("rig_file is not a valid path or does not point to an FBX file")
@@ -240,8 +228,11 @@ def batch_retarget_animations(rig_file, map_file, anim_source, export_dir=None, 
             # store timecode in and out
             tc_in, tc_out = tc_range[0], tc_range[-1]
 
-            # select root joint to access its properties
+            # select root joint to access its properties and delete all keys from it and children
             root = FBFindModelByLabelName('root')
+            for node in root.AnimationNode.Nodes:
+                if node.FCurve:
+                    node.FCurve.EditClear()
 
             # create TimeCode object at given framerate (LLF uses 59.94 fps)
             tc = FBTimeCode(FBTimeCode.FRAMES_5994)
@@ -297,10 +288,3 @@ def batch_retarget_animations(rig_file, map_file, anim_source, export_dir=None, 
     # Summary and counters
     log("Batch script done\nFiles Processed: {} / Success: {} / Failed: {}".format(counter_success + counter_fail, counter_success, counter_fail))
 
-
-# SOURCES ###########################################################################################################################################
-# https://help.autodesk.com/view/MOBPRO/2018/ENU/?guid=__py_ref__tasks_2_time_code_keying_8py_example_html
-# https://re-thought.com/how-to-suppress-scientific-notation-in-pandas/
-# https://stackoverflow.com/questions/28218698/how-to-iterate-over-columns-of-pandas-dataframe-to-run-regression
-# https://knowledge.autodesk.com/support/motionbuilder/learn-explore/caas/CloudHelp/cloudhelp/2022/ENU/MotionBuilder/files/GUID-46E090C5-34AD-4E26-872F-F7D21DC57C74-htm.html
-# https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation

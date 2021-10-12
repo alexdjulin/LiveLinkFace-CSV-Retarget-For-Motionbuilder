@@ -1,7 +1,7 @@
 from pyfbsdk import *
 from pyfbsdk_additions import *
 import ctrl
-importlib.reload(ctrl)
+importlib.reload(ctrl)  # python3. Use reload() for python2
 import os
 import json
 
@@ -190,7 +190,7 @@ def PopulateLayout(mainLyt):
     bOKBtn.Hint = "Start the batch retarget"
     bOKBtn.Justify = FBTextJustify.kFBTextJustifyCenter
     bOKBtn.Look = FBButtonLook.kFBLookColorChange
-    bOKBtn.SetStateColor(FBButtonState.kFBButtonState0,FBColor(0.2, 0.2, 0.9))
+    bOKBtn.SetStateColor(FBButtonState.kFBButtonState0,FBColor(0, 165/255, 255/255))
     lytButtons.Add(bOKBtn,btnWidth*4-8)
     bOKBtn.OnClick.Add(startBatch)
     
