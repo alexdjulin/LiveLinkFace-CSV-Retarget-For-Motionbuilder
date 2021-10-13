@@ -1,4 +1,4 @@
-# Live Link Face to Unreal MataHuman
+# Live Link Face to Unreal MetaHuman
 *Retarget facial animations recorded with the Live Link Face app onto an Unreal MetaHuman character, using MotionBuilder and Python.*
 
 ## Description
@@ -30,4 +30,19 @@ The anim, export, map, rig and timecode directories are just for testing and can
 ## How to run the script
 Drag-and-drop and execute **run.py** in MotionBuilder, or open it in the Python Editor and run it. It will call the **main()** function and display the UI. Fill up the required fields and click **OK** to start the retargeting batch.
 Alternatively you can call **main()** from a menu element or a shortcut.
+
+## UI description
+The script offers a basic UI to enter the required and optional paths.
+
+### Required fields
++ **MH Rig File [FBX]**: path to your Unreal MetaHuman skeleton. You can use the one from Ada in the rig folder, which I exported from the [MetaHuman project](https://www.unrealengine.com/marketplace/en-US/product/metahumans).
++ **Map File [t3D]**: path to your map file exported from unreal. You can use teh one from the map folder, which I exported from that same project.
++ **Animation(s) [CSV]**: path to an animation file created by Live Link Face. You can specify a directory with multiple files to run the batch on all of them
+### Optional fields:
++ **Export Folder**: path to the folder where fbx animations should be exported. If not specified, takes will be saved in the Animation folder, in an Export subfolder.
++ **TC Sync File [CSV]**: path to a CSV file specifying for each take the starting timecode for synchronisation. If not specified, the animation file timecode will be used.
+### Buttons:
++ **Help**: Opens this page
++ **Reset**: Delete all the entries
++ **OK**: Start the batch process
 
