@@ -60,8 +60,18 @@ Here are the basic steps the script is going through:
 
 The exported FBX files can be imported into Unreal and directly applied to the MetaHuman Face skeleton.
 
-## Optional: How to sync animations
+## Optional: How to offset/sync animations
 If you recorded an smtp timecode in the video container or on the audio channel, you can use this value to offset the animation at retargeting. Create for this a CSV file (or use **the one** from the timecode directory) and specify for each filename the timecode it should start at. 
 If you recorded an smtp timecode on the audio channel, you can use a software like the [Tentacle Timecode Tool](https://tentaclesync.com/timecode-tool) to read it and export it as CSV.
 Be careful to use the exact headers **Filename** and **Timecode**, and specify your filenames without extension.
 <p align="center"><img src="readme/tc_csv.jpg" width="300"></p>
+
+## Optional: Save and Load
+To speed up the process of entering all the paths, the script is using a data.json file at the root of the project. The script automatically loads the 5 fields at startup and saves them when clicking OK. Feel free to comment the load_data() and save_data() functions to get rid of this feature. On the other hand, you can save versions of data.json corresponding to different projects if it helps.
+
+## Additional help and resources
+[MetaHuman documentation](https://www.unrealengine.com/en-US/digital-humans)
+
+[Live Link Face documentation](https://docs.unrealengine.com/4.27/en-US/AnimatingObjects/SkeletalMeshAnimation/FacialRecordingiPhone/)
+
+[ARKit blendshape description](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation)
