@@ -60,3 +60,8 @@ Here are the basic steps the script is going through:
 
 The exported FBX files can be imported into Unreal and directly applied to the MetaHuman Face skeleton.
 
+## Optional: How to sync animations
+If you recorded an smtp timecode in the video container or on the audio channel, you can use this value to offset the animation at retargeting. Create for this a CSV file (or use **the one** from the timecode directory) and specify for each filename the timecode it should start at. 
+If you recorded an smtp timecode on the audio channel, you can use a software like the [Tentacle Timecode Tool](https://tentaclesync.com/timecode-tool) to read it and export it as CSV.
+Be careful to use the exact headers **Filename** and **Timecode**, and specify your filenames without extension.
+<p align="center"><img src="readme/tc_csv.jpg" width="300"></p>
