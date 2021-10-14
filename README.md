@@ -33,7 +33,7 @@ Alternatively you can call **main()** from a menu element or a shortcut.
 
 ## UI description
 The script offers a basic UI to enter the required and optional paths.
-![UI](readme/ui.png?raw=true)
+<p align="center"><img src="readme/ui.jpg" width="652"></p>
 
 ### Required fields
 + **MH Rig File [FBX]**: path to your Unreal MetaHuman skeleton. You can use the one from Ada in the rig folder, which I exported from the [MetaHuman project](https://www.unrealengine.com/marketplace/en-US/product/metahumans).
