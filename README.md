@@ -25,7 +25,7 @@ The script relies on the following files:
 + **ui.py**: UI file, creates and displays the UI, collects information and start the retargeting process
 + **ctrl.py**: Defines the BlendShape class and methods to parse the T3D map file and CSV animation and timecode files. Batch retargets the animations onto the MH rig file and exports FBXs.
 + **data.json**: Optional file, saves the current user input or loads the latest one
-The anim, export, map, rig and timecode directories are just for testing and can be moved anywhere, as long as their content is specified correctly in the UI fields.
+The anim, export, map, rig and timecode directories are just for testing and can be moved anywhere, as long as their content is entered correctly in the UI fields.
 
 ## How to run the script
 Drag-and-drop and execute **run.py** in MotionBuilder, or open it in the Python Editor and run it. It will call the **main()** function and display the UI. Fill up the required fields and click **OK** to start the retargeting batch.
@@ -37,7 +37,7 @@ The script offers a basic UI to enter the required and optional paths.
 
 ### Required fields
 + **MH Rig File [FBX]**: path to your Unreal MetaHuman skeleton. You can use the one from Ada in the rig folder, which I exported from the [MetaHuman project](https://www.unrealengine.com/marketplace/en-US/product/metahumans).
-+ **Map File [t3D]**: path to your map file exported from unreal. You can use teh one from the map folder, which I exported from that same project.
++ **Map File [t3D]**: path to your map file exported from unreal. You can use the one from the map folder, which I exported from that same project.
 + **Animation(s) [CSV]**: path to an animation file created by Live Link Face. You can specify a directory with multiple files to run the batch on all of them
 ### Optional fields:
 + **Export Folder**: path to the folder where fbx animations should be exported. If not specified, takes will be saved in the Animation folder, in an Export subfolder.
@@ -46,4 +46,17 @@ The script offers a basic UI to enter the required and optional paths.
 + **Help**: Opens this page
 + **Reset**: Delete all the entries
 + **OK**: Start the batch process
+
+## How to record animations using the Live Link Face app
+See the app's [documentation](https://docs.unrealengine.com/4.27/en-US/AnimatingObjects/SkeletalMeshAnimation/FacialRecordingiPhone/) on how to connect to your Unreal metahuman character and drive its face in real-time.
+
+## How the script is working
+Here are the basic steps the script is going through:
+1. Run the UI and store the input paths
+2. Parse the T3D map file from Unreal and create BlendShape instances for all the ARKit shapes found. A BlendShape instance is defined by its name, a dictionary mapping this shape to the corresponding weighted metahuman properties, and a dictionary of timecode/values for the current animation being processed.
+3. Load the MH rig. Opens the current CSV animation file. For each custom property found on the root join (CTRL_XXX shapes and head_ xxx correctives), go through the list of BlendShape instances created at step 2. If an ARKit shape should influence this custom property, calculate and key the weighted values for this property and for all frames. Then move on to the next custom property, and so on. If a CSV Sync File is specified, the timecode used to key the values will be offset to start at the given timecode.
+4. Set up the working timespan (frames in and out), then save the FBX file.
+5. If you specify a directory of CSV files (batch mode), the script will go through step 3 and 4 for all of them.
+
+The exported FBX files can be imported into Unreal and directly applied to the MetaHuman Face skeleton.
 
