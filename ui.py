@@ -84,7 +84,7 @@ def resetFields(control, event):
 def openDocumentation(control, event):
     """ open the online documentation page """
     import webbrowser
-    webbrowser.open('https://docs.google.com/document/d/1FE3_34srI_uoTEVfIsAHkoijMeWWwbfpKvNp0X0h9aY/edit#heading=h.goxd7kpxzjw3')
+    webbrowser.open('https://github.com/alexdjulin/LiveLinkFace-CSV-Retarget-For-Motionbuilder')
 
 # POPULATE LAYOUT #################################################################
 def PopulateLayout(mainLyt):
