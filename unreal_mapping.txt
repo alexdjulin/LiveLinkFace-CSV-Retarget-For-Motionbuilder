@@ -1,0 +1,473 @@
+Default
+
+EyeBlinkLeft
+CTRL_expressions_eyeBlinkL = 1.0
+head_cm1_color_head_wm1_blink_L = 1.0
+head_cm1_color_head_wm1_squintInner_L = 0.3
+head_wm1_normal_head_wm1_blink_L = 1.0
+head_wm1_normal_head_wm1_squintInner_L = 0.3
+
+EyeLookDownLeft
+CTRL_expressions_eyeLookDownL = 1.0
+head_cm1_color_head_wm1_blink_L = 1.0
+head_wm1_normal_head_wm1_blink_L = 1.0
+
+EyeLookInLeft
+CTRL_expressions_eyeLookRightL = 1.0
+
+EyeLookOutLeft
+CTRL_expressions_eyeLookLeftL = 1.0
+
+EyeLookUpLeft
+CTRL_expressions_eyeLookUpL = 1.0
+
+EyeSquintLeft
+CTRL_expressions_eyeSquintInnerL = 1.0
+head_cm1_color_head_wm1_squintInner_L = 0.8
+head_wm1_normal_head_wm1_squintInner_L = 0.8
+
+EyeWideLeft
+CTRL_expressions_eyeWidenL = 1.0
+
+EyeBlinkRight
+CTRL_expressions_eyeBlinkR = 1.0
+head_cm1_color_head_wm1_blink_R = 1.0
+head_cm1_color_head_wm1_squintInner_R = 0.3
+head_wm1_normal_head_wm1_blink_R = 1.0
+head_wm1_normal_head_wm1_squintInner_R = 0.3
+
+EyeLookDownRight
+CTRL_expressions_eyeLookDownR = 1.0
+head_cm1_color_head_wm1_blink_R = 1.0
+head_wm1_normal_head_wm1_blink_R = 1.0
+
+EyeLookInRight
+CTRL_expressions_eyeLookLeftR = 1.0
+
+EyeLookOutRight
+CTRL_expressions_eyeLookRightR = 1.0
+
+EyeLookUpRight
+CTRL_expressions_eyeLookUpR = 1.0
+
+EyeSquintRight
+CTRL_expressions_eyeSquintInnerR = 1.0
+head_cm1_color_head_wm1_squintInner_R = 0.8
+head_wm1_normal_head_wm1_squintInner_R = 0.8
+
+EyeWideRight
+CTRL_expressions_eyeWidenR = 1.0
+CTRL_expressions_eyeSquintInnerR = -1e-06
+CTRL_expressions_jawFwd = 1e-06
+head_cm1_color_head_wm1_squintInner_R = -1e-06
+head_wm1_normal_head_wm1_squintInner_R = -1e-06
+
+JawForward
+CTRL_expressions_jawFwd = 0.998648
+
+JawLeft
+CTRL_expressions_jawLeft = 1.0
+
+JawRight
+CTRL_expressions_jawOpen = 1e-06
+CTRL_expressions_jawLeft = -1e-06
+CTRL_expressions_jawRight = 1.0
+head_cm1_color_head_wm1_jawOpen = 1e-06
+head_wm1_normal_head_wm1_jawOpen = 1e-06
+
+JawOpen
+CTRL_expressions_jawOpen = 1.0
+head_cm1_color_head_wm1_jawOpen = 1.0
+head_wm1_normal_head_wm1_jawOpen = 1.0
+
+MouthFunnel
+CTRL_expressions_mouthLipsPurseUL = 1e-06
+CTRL_expressions_mouthLipsPurseUR = 1e-06
+CTRL_expressions_mouthLipsPurseDL = 1e-06
+CTRL_expressions_mouthLipsPurseDR = 1e-06
+CTRL_expressions_mouthFunnelUL = 1.000001
+CTRL_expressions_mouthFunnelUR = 1.000001
+CTRL_expressions_mouthFunnelDL = 1.000001
+CTRL_expressions_mouthFunnelDR = 1.000001
+CTRL_expressions_mouthLipsTogetherUL = -1e-06
+CTRL_expressions_mouthLipsTogetherUR = -1e-06
+CTRL_expressions_mouthLipsTogetherDL = -1e-06
+CTRL_expressions_mouthLipsTogetherDR = -1e-06
+CTRL_expressions_jawOpen = -1e-06
+head_cm1_color_head_wm1_jawOpen = -1e-06
+head_wm1_normal_head_wm1_jawOpen = -1e-06
+
+MouthPucker
+CTRL_expressions_mouthLipsPurseUL = 1.0
+CTRL_expressions_mouthLipsPurseUR = 1.0
+CTRL_expressions_mouthLipsPurseDL = 1.0
+CTRL_expressions_mouthLipsPurseDR = 1.0
+CTRL_expressions_mouthLipsTowardsUL = 0.412242
+CTRL_expressions_mouthLipsTowardsUR = 0.412242
+CTRL_expressions_mouthLipsTowardsDL = 0.412242
+CTRL_expressions_mouthLipsTowardsDR = 0.412242
+CTRL_expressions_mouthFunnelUL = 0.751934
+CTRL_expressions_mouthFunnelUR = 0.751934
+CTRL_expressions_mouthFunnelDL = 0.751934
+CTRL_expressions_mouthFunnelDR = 0.751934
+head_cm1_color_head_wm13_lips_UL = 0.624033
+head_cm1_color_head_wm13_lips_UR = 0.624033
+head_cm1_color_head_wm13_lips_DL = 0.624033
+head_cm1_color_head_wm13_lips_DR = 0.624033
+head_wm1_normal_head_wm13_lips_UL = 0.624033
+head_wm1_normal_head_wm13_lips_UR = 0.624033
+head_wm1_normal_head_wm13_lips_DL = 0.624033
+head_wm1_normal_head_wm13_lips_DR = 0.624033
+head_cm1_color_head_wm1_purse_UL = 0.529794
+head_wm1_normal_head_wm1_purse_UL = 0.529794
+head_cm1_color_head_wm1_purse_UR = 0.529794
+head_wm1_normal_head_wm1_purse_UR = 0.529794
+head_cm1_color_head_wm1_purse_DL = 0.529794
+head_wm1_normal_head_wm1_purse_DL = 0.529794
+head_cm1_color_head_wm1_purse_DR = 0.529794
+head_wm1_normal_head_wm1_purse_DR = 0.529794
+
+MouthLeft
+CTRL_expressions_mouthLeft = 1.0
+head_cm3_color_head_wm3_cheekRaiseInner_L = 0.5
+head_cm3_color_head_wm3_cheekRaiseOuter_L = 0.5
+head_wm3_normal_head_wm3_cheekRaiseInner_L = 0.5
+head_wm3_normal_head_wm3_cheekRaiseOuter_L = 0.5
+head_cm3_color_head_wm3_smile_L = 1.0
+head_wm3_normal_head_wm3_smile_L = 1.0
+head_cm1_color_head_wm13_lips_UL = 0.5
+head_cm1_color_head_wm13_lips_UR = 0.5
+head_cm1_color_head_wm13_lips_DL = 0.5
+head_cm1_color_head_wm13_lips_DR = 0.5
+head_wm1_normal_head_wm13_lips_UL = 0.5
+head_wm1_normal_head_wm13_lips_UR = 0.5
+head_wm1_normal_head_wm13_lips_DL = 0.5
+head_wm1_normal_head_wm13_lips_DR = 0.5
+
+MouthRight
+CTRL_expressions_mouthLeft = -1e-06
+CTRL_expressions_mouthRight = 1.0
+CTRL_expressions_mouthCornerPullL = 1e-06
+head_cm3_color_head_wm3_cheekRaiseInner_R = 0.5
+head_cm3_color_head_wm3_cheekRaiseOuter_R = 0.5
+head_wm3_normal_head_wm3_cheekRaiseInner_R = 0.5
+head_wm3_normal_head_wm3_cheekRaiseOuter_R = 0.5
+head_cm1_color_head_wm13_lips_UL = 0.5
+head_cm1_color_head_wm13_lips_UR = 0.5
+head_cm1_color_head_wm13_lips_DL = 0.5
+head_cm1_color_head_wm13_lips_DR = 0.5
+head_wm1_normal_head_wm13_lips_UL = 0.5
+head_wm1_normal_head_wm13_lips_UR = 0.5
+head_wm1_normal_head_wm13_lips_DL = 0.5
+head_wm1_normal_head_wm13_lips_DR = 0.5
+head_cm3_color_head_wm3_smile_R = 1.0
+head_wm3_normal_head_wm3_smile_R = 1.0
+head_cm3_color_head_wm13_lips_UL = 1e-06
+head_cm3_color_head_wm13_lips_DL = 1e-06
+head_wm3_normal_head_wm13_lips_UL = 1e-06
+head_wm3_normal_head_wm13_lips_DL = 1e-06
+
+MouthSmileLeft
+CTRL_expressions_mouthCornerPullL = 1.0
+head_cm3_color_head_wm3_cheekRaiseInner_L = 0.8
+head_cm3_color_head_wm3_cheekRaiseOuter_L = 0.8
+head_wm3_normal_head_wm3_cheekRaiseInner_L = 0.8
+head_wm3_normal_head_wm3_cheekRaiseOuter_L = 0.8
+head_cm3_color_head_wm3_smile_L = 1.0
+head_wm3_normal_head_wm3_smile_L = 1.0
+head_cm3_color_head_wm13_lips_UL = 1.0
+head_cm3_color_head_wm13_lips_DL = 1.0
+head_wm3_normal_head_wm13_lips_UL = 1.0
+head_wm3_normal_head_wm13_lips_DL = 1.0
+
+MouthSmileRight
+CTRL_expressions_mouthCornerPullL = -1e-06
+CTRL_expressions_mouthCornerPullR = 1.0
+CTRL_expressions_mouthDimpleR = 0.002543
+CTRL_expressions_mouthCornerDepressL = 1e-06
+head_cm3_color_head_wm3_cheekRaiseInner_L = -1e-06
+head_cm3_color_head_wm3_cheekRaiseOuter_L = -1e-06
+head_wm3_normal_head_wm3_cheekRaiseInner_L = -1e-06
+head_wm3_normal_head_wm3_cheekRaiseOuter_L = -1e-06
+head_cm3_color_head_wm3_cheekRaiseInner_R = 0.8
+head_cm3_color_head_wm3_cheekRaiseOuter_R = 0.8
+head_wm3_normal_head_wm3_cheekRaiseInner_R = 0.8
+head_wm3_normal_head_wm3_cheekRaiseOuter_R = 0.8
+head_cm3_color_head_wm3_smile_L = -1e-06
+head_wm3_normal_head_wm3_smile_L = -1e-06
+head_cm3_color_head_wm3_smile_R = 1.0
+head_wm3_normal_head_wm3_smile_R = 1.0
+head_cm3_color_head_wm13_lips_UL = -1e-06
+head_cm3_color_head_wm13_lips_DL = -1e-06
+head_wm3_normal_head_wm13_lips_UL = -1e-06
+head_wm3_normal_head_wm13_lips_DL = -1e-06
+head_cm3_color_head_wm13_lips_UR = 1.0
+head_cm3_color_head_wm13_lips_DR = 1.0
+head_wm3_normal_head_wm13_lips_UR = 1.0
+head_wm3_normal_head_wm13_lips_DR = 1.0
+
+MouthFrownLeft
+CTRL_expressions_mouthCornerDepressL = 1.0
+
+MouthFrownRight
+CTRL_expressions_mouthCornerDepressR = 1.0
+
+MouthDimpleLeft
+CTRL_expressions_mouthDimpleL = 1.0
+CTRL_expressions_mouthDimpleR = 1e-06
+CTRL_expressions_mouthCornerDepressR = -1e-06
+head_cm3_color_head_wm3_smile_L = 0.4
+head_wm3_normal_head_wm3_smile_L = 0.4
+head_cm3_color_head_wm3_smile_R = 1e-06
+head_wm3_normal_head_wm3_smile_R = 1e-06
+head_cm3_color_head_wm13_lips_UL = 0.5
+head_cm3_color_head_wm13_lips_DL = 0.5
+head_wm3_normal_head_wm13_lips_UL = 0.5
+head_wm3_normal_head_wm13_lips_DL = 0.5
+head_cm3_color_head_wm13_lips_UR = 1e-06
+head_cm3_color_head_wm13_lips_DR = 1e-06
+head_wm3_normal_head_wm13_lips_UR = 1e-06
+head_wm3_normal_head_wm13_lips_DR = 1e-06
+
+MouthDimpleRight
+CTRL_expressions_mouthDimpleR = 1.0
+head_cm3_color_head_wm3_smile_R = 0.4
+head_wm3_normal_head_wm3_smile_R = 0.4
+head_cm3_color_head_wm13_lips_UR = 0.5
+head_cm3_color_head_wm13_lips_DR = 0.5
+head_wm3_normal_head_wm13_lips_UR = 0.5
+head_wm3_normal_head_wm13_lips_DR = 0.5
+
+MouthStretchLeft
+CTRL_expressions_mouthStretchL = 1.0
+head_cm3_color_head_wm13_lips_UL = 1.0
+head_cm3_color_head_wm13_lips_DL = 1.0
+head_wm3_normal_head_wm13_lips_UL = 1.0
+head_wm3_normal_head_wm13_lips_DL = 1.0
+head_cm2_color_head_wm2_mouthStretch_L = 1.0
+head_wm2_normal_head_wm2_mouthStretch_L = 1.0
+
+MouthStretchRight
+CTRL_expressions_mouthStretchL = -1e-06
+CTRL_expressions_mouthStretchR = 1.0
+CTRL_expressions_mouthUpperLipRollInL = 1e-06
+CTRL_expressions_mouthUpperLipRollInR = 1e-06
+CTRL_expressions_mouthLowerLipRollInL = 1e-06
+CTRL_expressions_mouthLowerLipRollInR = 1e-06
+head_cm3_color_head_wm13_lips_UL = -1e-06
+head_cm3_color_head_wm13_lips_DL = -1e-06
+head_wm3_normal_head_wm13_lips_UL = -1e-06
+head_wm3_normal_head_wm13_lips_DL = -1e-06
+head_cm3_color_head_wm13_lips_UR = 1.0
+head_cm3_color_head_wm13_lips_DR = 1.0
+head_wm3_normal_head_wm13_lips_UR = 1.0
+head_wm3_normal_head_wm13_lips_DR = 1.0
+head_cm2_color_head_wm2_mouthStretch_L = -1e-06
+head_wm2_normal_head_wm2_mouthStretch_L = -1e-06
+head_cm2_color_head_wm2_mouthStretch_R = 1.0
+head_wm2_normal_head_wm2_mouthStretch_R = 1.0
+
+MouthRollLower
+CTRL_expressions_mouthUpperLipRollInL = 0.49881
+CTRL_expressions_mouthUpperLipRollInR = 0.49881
+CTRL_expressions_mouthLowerLipRollInL = 1.0
+CTRL_expressions_mouthLowerLipRollInR = 1.0
+
+MouthRollUpper
+CTRL_expressions_mouthUpperLipRollInL = 0.997621
+CTRL_expressions_mouthUpperLipRollInR = 0.997621
+
+MouthShrugLower
+CTRL_expressions_mouthUpperLipRollInL = -1e-06
+CTRL_expressions_mouthUpperLipRollInR = -1e-06
+CTRL_expressions_jawChinRaiseDL = 1.0
+CTRL_expressions_jawChinRaiseDR = 1.0
+CTRL_expressions_jawChinRaiseUL = 1e-06
+CTRL_expressions_jawChinRaiseUR = 1e-06
+head_cm1_color_head_wm1_chinRaise_L = 1.0
+head_wm1_normal_head_wm1_chinRaise_L = 1.0
+head_cm1_color_head_wm1_chinRaise_R = 1.0
+head_wm1_normal_head_wm1_chinRaise_R = 1.0
+
+MouthShrugUpper
+CTRL_expressions_jawChinRaiseUL = 1.0
+CTRL_expressions_jawChinRaiseUR = 1.0
+
+MouthPressLeft
+CTRL_expressions_mouthPressUL = 1.0
+CTRL_expressions_mouthPressDL = 1.0
+
+MouthPressRight
+CTRL_expressions_mouthLowerLipDepressL = 1e-06
+CTRL_expressions_mouthPressUL = -1e-06
+CTRL_expressions_mouthPressUR = 1.0
+CTRL_expressions_mouthPressDL = -1e-06
+CTRL_expressions_mouthPressDR = 1.0
+
+MouthLowerDownLeft
+CTRL_expressions_mouthLowerLipDepressL = 1.0
+
+MouthLowerDownRight
+CTRL_expressions_mouthLowerLipDepressR = 1.0
+
+MouthUpperUpLeft
+CTRL_expressions_mouthUpperLipRaiseL = 1.0
+CTRL_expressions_mouthUpperLipRaiseR = 1e-06
+CTRL_expressions_mouthLowerLipDepressR = -1e-06
+
+MouthUpperUpRight
+CTRL_expressions_mouthUpperLipRaiseR = 1.0
+
+BrowDownLeft
+CTRL_expressions_browDownL = 1.0
+CTRL_expressions_browLateralL = 0.031405
+head_cm2_color_head_wm2_browsDown_L = 1.0
+head_wm2_normal_head_wm2_browsDown_L = 1.0
+head_cm2_color_head_wm2_browsLateral_L = 0.031405
+head_wm2_normal_head_wm2_browsLateral_L = 0.031405
+
+BrowDownRight
+CTRL_expressions_browDownL = -1e-06
+CTRL_expressions_browDownR = 1.0
+CTRL_expressions_browLateralL = 0.031406
+CTRL_expressions_browLateralR = 1e-06
+CTRL_expressions_browRaiseInL = 1e-06
+CTRL_expressions_browRaiseInR = 1e-06
+head_cm2_color_head_wm2_browsDown_L = -1e-06
+head_wm2_normal_head_wm2_browsDown_L = -1e-06
+head_cm2_color_head_wm2_browsDown_R = 1.0
+head_wm2_normal_head_wm2_browsDown_R = 1.0
+head_cm2_color_head_wm2_browsLateral_L = 0.031406
+head_wm2_normal_head_wm2_browsLateral_L = 0.031406
+head_cm2_color_head_wm2_browsLateral_R = 1e-06
+head_wm2_normal_head_wm2_browsLateral_R = 1e-06
+head_cm1_color_head_wm1_browsRaiseInner_L = 1e-06
+head_wm1_normal_head_wm1_browsRaiseInner_L = 1e-06
+head_cm1_color_head_wm1_browsRaiseInner_R = 1e-06
+head_wm1_normal_head_wm1_browsRaiseInner_R = 1e-06
+
+BrowInnerUp
+CTRL_expressions_browLateralL = 1.0
+CTRL_expressions_browLateralR = 1.0
+CTRL_expressions_browRaiseInL = 1.0
+CTRL_expressions_browRaiseInR = 1.0
+head_cm2_color_head_wm2_browsLateral_L = 1.0
+head_wm2_normal_head_wm2_browsLateral_L = 1.0
+head_cm2_color_head_wm2_browsLateral_R = 1.0
+head_wm2_normal_head_wm2_browsLateral_R = 1.0
+head_cm1_color_head_wm1_browsRaiseInner_L = 1.0
+head_wm1_normal_head_wm1_browsRaiseInner_L = 1.0
+head_cm1_color_head_wm1_browsRaiseInner_R = 1.0
+head_wm1_normal_head_wm1_browsRaiseInner_R = 1.0
+
+BrowOuterUpLeft
+CTRL_expressions_browLateralL = 0.031405
+CTRL_expressions_browRaiseInL = 1.0
+CTRL_expressions_browRaiseOuterL = 1.0
+head_cm2_color_head_wm2_browsLateral_L = 0.031405
+head_wm2_normal_head_wm2_browsLateral_L = 0.031405
+head_cm1_color_head_wm1_browsRaiseInner_L = 1.0
+head_wm1_normal_head_wm1_browsRaiseInner_L = 1.0
+head_cm1_color_head_wm1_browsRaiseOuter_L = 1.0
+head_wm1_normal_head_wm1_browsRaiseOuter_L = 1.0
+
+BrowOuterUpRight
+CTRL_expressions_browLateralL = 0.031405
+CTRL_expressions_browRaiseInL = -1e-06
+CTRL_expressions_browRaiseInR = 1.0
+CTRL_expressions_browRaiseOuterL = -1e-06
+CTRL_expressions_browRaiseOuterR = 1.0
+CTRL_expressions_mouthCheekBlowL = 1e-06
+CTRL_expressions_mouthCheekBlowR = 1e-06
+CTRL_expressions_mouthLipsBlowL = 1e-06
+CTRL_expressions_mouthLipsBlowR = 1e-06
+head_cm2_color_head_wm2_browsLateral_L = 0.031405
+head_wm2_normal_head_wm2_browsLateral_L = 0.031405
+head_cm1_color_head_wm1_browsRaiseInner_L = -1e-06
+head_wm1_normal_head_wm1_browsRaiseInner_L = -1e-06
+head_cm1_color_head_wm1_browsRaiseInner_R = 1.0
+head_wm1_normal_head_wm1_browsRaiseInner_R = 1.0
+head_cm1_color_head_wm1_browsRaiseOuter_L = -1e-06
+head_wm1_normal_head_wm1_browsRaiseOuter_L = -1e-06
+head_cm1_color_head_wm1_browsRaiseOuter_R = 1.0
+head_wm1_normal_head_wm1_browsRaiseOuter_R = 1.0
+
+CheekPuff
+CTRL_expressions_browLateralL = 0.031405
+CTRL_expressions_mouthCheekBlowL = 1.0
+CTRL_expressions_mouthCheekBlowR = 1.0
+CTRL_expressions_mouthLipsBlowL = 1.0
+CTRL_expressions_mouthLipsBlowR = 1.0
+head_cm2_color_head_wm2_browsLateral_L = 0.031405
+head_wm2_normal_head_wm2_browsLateral_L = 0.031405
+
+CheekSquintLeft
+CTRL_expressions_browLateralL = 0.031405
+CTRL_expressions_eyeCheekRaiseL = 1.0
+head_cm2_color_head_wm2_browsLateral_L = 0.031405
+head_wm2_normal_head_wm2_browsLateral_L = 0.031405
+head_cm3_color_head_wm3_cheekRaiseInner_L = 0.8
+head_cm3_color_head_wm3_cheekRaiseOuter_L = 0.8
+head_cm3_color_head_wm3_cheekRaiseUpper_L = 0.8
+head_wm3_normal_head_wm3_cheekRaiseInner_L = 0.8
+head_wm3_normal_head_wm3_cheekRaiseOuter_L = 0.8
+head_wm3_normal_head_wm3_cheekRaiseUpper_L = 0.8
+
+CheekSquintRight
+CTRL_expressions_browLateralL = 0.031405
+CTRL_expressions_eyeCheekRaiseR = 1.0
+head_cm2_color_head_wm2_browsLateral_L = 0.031405
+head_wm2_normal_head_wm2_browsLateral_L = 0.031405
+head_cm3_color_head_wm3_cheekRaiseInner_R = 0.8
+head_cm3_color_head_wm3_cheekRaiseOuter_R = 0.8
+head_cm3_color_head_wm3_cheekRaiseUpper_R = 0.8
+head_wm3_normal_head_wm3_cheekRaiseInner_R = 0.8
+head_wm3_normal_head_wm3_cheekRaiseOuter_R = 0.8
+head_wm3_normal_head_wm3_cheekRaiseUpper_R = 0.8
+
+NoseSneerLeft
+CTRL_expressions_browLateralL = 0.031405
+CTRL_expressions_eyeCheekRaiseR = -3e-06
+CTRL_expressions_noseWrinkleL = 1.0
+CTRL_expressions_noseWrinkleR = 3e-06
+head_cm2_color_head_wm2_browsDown_L = 0.2
+head_wm2_normal_head_wm2_browsDown_L = 0.2
+head_cm2_color_head_wm2_browsDown_R = 1e-06
+head_wm2_normal_head_wm2_browsDown_R = 1e-06
+head_cm2_color_head_wm2_browsLateral_L = 0.331405
+head_wm2_normal_head_wm2_browsLateral_L = 0.331405
+head_cm2_color_head_wm2_browsLateral_R = 1e-06
+head_wm2_normal_head_wm2_browsLateral_R = 1e-06
+head_cm3_color_head_wm3_cheekRaiseInner_R = -2e-06
+head_cm3_color_head_wm3_cheekRaiseOuter_R = -2e-06
+head_cm3_color_head_wm3_cheekRaiseUpper_R = -2e-06
+head_wm3_normal_head_wm3_cheekRaiseInner_R = -2e-06
+head_wm3_normal_head_wm3_cheekRaiseOuter_R = -2e-06
+head_wm3_normal_head_wm3_cheekRaiseUpper_R = -2e-06
+head_cm2_color_head_wm2_noseWrinkler_L = 1.0
+head_wm2_normal_head_wm2_noseWrinkler_L = 1.0
+head_cm2_color_head_wm2_noseWrinkler_R = 3e-06
+head_wm2_normal_head_wm2_noseWrinkler_R = 3e-06
+
+NoseSneerRight
+CTRL_expressions_browLateralL = 0.031405
+CTRL_expressions_noseWrinkleR = 1.0
+head_cm2_color_head_wm2_browsDown_R = 0.2
+head_wm2_normal_head_wm2_browsDown_R = 0.2
+head_cm2_color_head_wm2_browsLateral_L = 0.031405
+head_wm2_normal_head_wm2_browsLateral_L = 0.031405
+head_cm2_color_head_wm2_browsLateral_R = 0.3
+head_wm2_normal_head_wm2_browsLateral_R = 0.3
+head_cm2_color_head_wm2_noseWrinkler_R = 1.0
+head_wm2_normal_head_wm2_noseWrinkler_R = 1.0
+
+TongueOut
+CTRL_expressions_browLateralL = 0.031405
+CTRL_expressions_tongueDown = 0.825971
+CTRL_expressions_tongueRight = 0.069764
+CTRL_expressions_tongueOut = 0.768854
+CTRL_expressions_tongueRollDown = 0.247319
+CTRL_expressions_tongueWide = 0.627775
+head_cm2_color_head_wm2_browsLateral_L = 0.031405
+head_wm2_normal_head_wm2_browsLateral_L = 0.031405
+
